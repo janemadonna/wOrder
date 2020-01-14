@@ -19,9 +19,19 @@ if (window.location.hostname === 'localhost') {
 const api = Axios.create({
   baseURL: apiUrl,
   headers: {
-		Authorization: `Bearer ${JwtToken()}`,
     'Access-Control-Allow-Origin': '*'
   }
 })
+
+api.interceptors.request.use(
+    config => {
+      const token = localStorage.getItem('token')
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+      }
+      return config
+    },
+    err => Promise.reject(err)
+  )
 
 export default api

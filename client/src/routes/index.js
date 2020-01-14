@@ -7,7 +7,7 @@ import Anthology from '../screens/Anthology'
 import LogIn from '../screens/LogIn'
 import SignUp from '../screens/SignUp'
 
-const Routes = ({user}) => {
+const Routes = ({user, setAuthenticated}) => {
     return (
         <Switch>
             <Route
@@ -28,7 +28,7 @@ const Routes = ({user}) => {
             <Route 
             exact
             path='/login'
-            render={props => <LogIn {...props}/>}
+            render={props => <LogIn {...props} setAuthenticated={setAuthenticated}/>}
             />
             <Route 
             exact

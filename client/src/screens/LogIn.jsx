@@ -23,10 +23,10 @@ class LogIn extends React.Component {
     onSignIn = event => {
         event.preventDefault()
 
-        const { history, setUser } = this.props
+        const { history } = this.props
 
         logInUser(this.state)
-        .then(res => setUser(res.user))
+        .then(res => this.props.setAuthenticated(true))
         .then(() => history.push(`/`))
         .catch(error => {
             console.error(error)

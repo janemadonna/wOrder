@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from './components/Container'
 import './App.css';
 
 function App() {
+  const [isAuthenticated, setAuthenticated] = useState(false)
+  console.log(isAuthenticated)
   return (
     <div className="App">
-      <Container />
+      <Container 
+      isAuthenticated={isAuthenticated}
+      setAuthenticated={setAuthenticated}/>
     </div>
   );
 }

@@ -5,13 +5,7 @@ class Fictionary extends React.Component {
     constructor() {
         super()
         this.state = {
-            words: [{id: 1,
-                title: "abbifal",
-                synonym: "cat",
-                created_at: "2020-01-14T15:04:25.399Z",
-                updated_at: "2020-01-14T15:04:25.399Z",
-                user_id: 3}],
-            definitions: []
+            words: []
         }
     }
 
@@ -32,22 +26,23 @@ class Fictionary extends React.Component {
     fetchDefs = async () => {
         console.log(this.state.words)
         try {
-            const definitions = this.state.words.map(async (word) => {
-                const result = await getDefs(word.synonym)
-                return result
-            })
-            //const definitions = await getDefs('Cat')            
-            console.log('def:' ,definitions)
-            this.setState({definitions})
-            console.log(this.state.definitions)
+            this.state.words.forEach(async (word, index) => {
+                console.log(word.synonym)
+                const definitions = await getDefs(word.synonym)
+                console.log(definitions)
+                this.setState(state => { 
+                    state.words[index] = {...word, definitions}
+                    return state
+                })
+            })  
+            console.log(this.state.words)         
         } catch (err) {
             console.error(err)
         }
     }
 
     render() {
-        const { words, definitions } = this.state
-        const { fetchDefs } = this
+        const { words } = this.state
         return (
             <div>
                 {words.map(word => {
