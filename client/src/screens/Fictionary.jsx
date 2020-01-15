@@ -17,25 +17,21 @@ class Fictionary extends React.Component {
     fetchWords = async () => {
         try {
         const words = await getWords()
-        await this.setState({ words })
+        this.setState({ words })
         } catch (err) {
         console.error(err)
         }
     }
 
     fetchDefs = async () => {
-        console.log(this.state.words)
         try {
             this.state.words.forEach(async (word, index) => {
-                console.log(word.synonym)
                 const definitions = await getDefs(word.synonym)
-                console.log(definitions)
                 this.setState(state => { 
                     state.words[index] = {...word, definitions}
                     return state
                 })
-            })  
-            console.log(this.state.words)         
+            })        
         } catch (err) {
             console.error(err)
         }
@@ -47,11 +43,17 @@ class Fictionary extends React.Component {
             <div>
                 {words.map(word => {
                     return (
-                        <div key={word.id}>
-                            <h4>{word.title}</h4>
-                            <p>synonym: {word.synonym}</p>
+                        <div className='word-card' key={word.id}>
+                            <h4 className='word-title'>{word.title}</h4>
+                            <p><strong>synonym:</strong> {word.synonym}</p>
                             <div>
-                                
+                                {word.hasOwnProperty('definitions') ? word.definitions.map(definition => {
+                                    return (
+                                        <div key={definition.definition}>
+                                            <p><strong>definition:</strong> {definition.definition}</p>
+                                        </div>
+                                    )
+                                }) : 'loading...' }
                             </div>
                         </div>
                     )

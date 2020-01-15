@@ -1,6 +1,7 @@
 import React from 'react'
 import Routes from '../routes'
 import Nav from '../components/shared/Nav'
+import UserNav from '../components/shared/UserNav'
 
 class Container extends React.Component {
     constructor(props) {
@@ -24,11 +25,13 @@ class Container extends React.Component {
         const { user } = this.state
         return (
             <div>
+                {this.props.isAuthenticated ? <UserNav isAuthenticated={this.props.isAuthenticated}/> : 
                 <Nav
-                user={user}
-                />
+                isAuthenticated={this.props.isAuthenticated}
+                /> }
                 <Routes 
                 user={user}
+                isAuthenticated={this.props.isAuthenticated}
                 setAuthenticated={this.props.setAuthenticated}
                 />
             </div>

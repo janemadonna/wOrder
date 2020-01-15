@@ -1,19 +1,22 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import AuthenticatedRoute from './AuthenticatedRoute'
 import Home from '../screens/Home'
 import Dashboard from '../screens/Dashboard'
 import Fictionary from '../screens/Fictionary'
 import Anthology from '../screens/Anthology'
 import LogIn from '../screens/LogIn'
 import SignUp from '../screens/SignUp'
+import NewWord from '../screens/NewWord'
+import NewPoem from '../screens/NewPoem'
 
-const Routes = ({user, setAuthenticated}) => {
+const Routes = ({user, isAuthenticated, setAuthenticated}) => {
     return (
         <Switch>
             <Route
             exact
             path="/"
-            render={props => (user ? <Dashboard user={user} {...props} /> : <Home user={user} {...props} />)}
+            render={props => (isAuthenticated ? <Dashboard isAuthenticated={isAuthenticated} {...props} /> : <Home isAuthenticated={isAuthenticated} {...props} />)}
             />
             <Route
             exact
@@ -34,6 +37,18 @@ const Routes = ({user, setAuthenticated}) => {
             exact
             path='/signup'
             render={props => <SignUp {...props}/>}
+            />
+            <Route 
+            exact
+            path='/newword'
+            render={props => (isAuthenticated ? <NewWord isAuthenticated={isAuthenticated} {...props}/> :
+                <Redirect to='/'/> )}
+            />
+            <Route 
+            exact
+            path='/newpoem'
+            render={props => (isAuthenticated ? <NewPoem isAuthenticated={isAuthenticated} {...props}/> :
+                <Redirect to='/'/> )}
             />
         </Switch>
     )

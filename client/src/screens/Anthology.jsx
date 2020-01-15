@@ -28,8 +28,8 @@ class Anthology extends React.Component {
         return (
             <div>{poems.map(poem => {
                 return (
-                    <div key={poem.id}>
-                        <h4>{poem.title}</h4>
+                    <div className='poem-card' key={poem.id}>
+                        <h4 className='poem-title'>{poem.title}</h4>
                         <p>{poem.content}</p>
                     </div>
                 )
