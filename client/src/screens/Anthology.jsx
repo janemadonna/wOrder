@@ -1,5 +1,6 @@
 import React from 'react'
 import { getPoems } from '../services'
+import { Link } from 'react-router-dom'
 
 class Anthology extends React.Component {
     constructor() {
@@ -20,7 +21,6 @@ class Anthology extends React.Component {
         } catch (err) {
         console.error(err)
         }
-        console.log(this.state.poems)
     }
 
     render() {
@@ -29,7 +29,7 @@ class Anthology extends React.Component {
             <div>{poems.map(poem => {
                 return (
                     <div className='poem-card' key={poem.id}>
-                        <h4 className='poem-title'>{poem.title}</h4>
+                        <Link to={`/anthology/${poem.id}`} ><h4 className='poem-title'>{poem.title}</h4></Link>
                         <p>{poem.content}</p>
                     </div>
                 )

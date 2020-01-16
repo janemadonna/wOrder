@@ -62,6 +62,15 @@ export const getPoems = async () => {
     }
 }
 
+export const getPoemById = async (id) => {
+  try {
+    const resp = await api.get(`/poems/${id}`)
+    return resp.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export const newWord = async (word) => {
     try {
         const resp = await api.post('/words', word)
@@ -69,4 +78,13 @@ export const newWord = async (word) => {
     } catch (error) {
         throw error
     }
+}
+
+export const newPoem = async (poem) => {
+  try {
+    const resp = await api.post('/poems', poem)
+    return resp
+  } catch (error) {
+    throw error
+  }
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import { getDefs, getWordById, updateWord } from '../services'
-import { Redirect } from 'react-router-dom'
 
 class UpdateWord extends React.Component {
     constructor(props) {

@@ -23,13 +23,11 @@ class NewWord extends React.Component {
     handleChange = e => {
         e.preventDefault()
         this.setState({ [e.target.name]: e.target.value })
-        console.log(this.state)
     }
 
     handleSubmit = async (e) => {
         e.preventDefault()
         const word = {title: this.state.title, synonym: this.state.synonym}
-        console.log(word)
         await this.fetchDefs()
         if (this.state.definitions.length > 0) {
             await newWord(word)

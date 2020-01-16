@@ -1,6 +1,5 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import AuthenticatedRoute from './AuthenticatedRoute'
 import Home from '../screens/Home'
 import Dashboard from '../screens/Dashboard'
 import Fictionary from '../screens/Fictionary'
@@ -12,6 +11,8 @@ import NewPoem from '../screens/NewPoem'
 import LogOut from '../screens/LogOut'
 import Word from '../screens/Word'
 import UpdateWord from '../screens/UpdateWord'
+import Poem from '../screens/Poem'
+import UpdatePoem from '../screens/UpdatePoem'
 
 const Routes = ({user, isAuthenticated, setAuthenticated}) => {
     return (
@@ -40,6 +41,16 @@ const Routes = ({user, isAuthenticated, setAuthenticated}) => {
             exact
             path='/anthology'
             render={props => <Anthology {...props}/>}
+            />
+            <Route
+            exact
+            path='/anthology/:id'
+            render={props => <Poem {...props} isAuthenticated={isAuthenticated} />}
+            />
+            <Route 
+            exact
+            path='/anthology/:id/update'
+            render={props => <UpdatePoem {...props} />}
             />
             <Route 
             exact

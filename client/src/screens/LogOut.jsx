@@ -3,7 +3,7 @@ import { logOut } from '../services/auth'
 
 class LogOut extends React.Component {
     componentDidMount() {
-        const { history, isAuthenticated, setAuthenticated } = this.props
+        const { history, setAuthenticated } = this.props
         logOut()
         .then(() => setAuthenticated(false))
         .finally(() => history.push('/'))
