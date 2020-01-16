@@ -50,6 +50,7 @@ class UpdateWord extends React.Component {
         await this.fetchDefs()
         if (this.state.definitions.length > 0) {
             await updateWord(this.props.match.params.id, word)
+            .then(this.props.history.push(`/fictionary/${this.props.match.params.id}`))
         } else {
             console.log('invalid word')
         }
@@ -58,7 +59,7 @@ class UpdateWord extends React.Component {
     render() {
         const { title, synonym } = this.state
         return (
-            <form onSubmit={e => this.handleSubmit(e) ? <Redirect to={`/fictionary/${this.props.match.params.id}`} /> : null } >
+            <form onSubmit={e => this.handleSubmit(e)} >
                 <label>word</label>
                 <input name='title' value={title} onChange={e => this.handleChange(e)} type='text' />
                 <label>synonym</label>

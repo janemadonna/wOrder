@@ -1,5 +1,5 @@
 import React from 'react'
-import { getWordById, getDefs } from '../services'
+import { getWordById, getDefs, deleteWord } from '../services'
 import { Link } from 'react-router-dom'
 
 class Word extends React.Component {
@@ -35,8 +35,12 @@ class Word extends React.Component {
         }
     }
 
-    handleDelete = () => {
-        
+    handleDelete = (e) => {
+        e.preventDefault()
+        console.log('delete')
+        deleteWord(this.props.match.params.id)
+        .then(this.props.history.push('/fictionary'))
+        .catch(console.error)
     }
 
     render() {
@@ -53,7 +57,7 @@ class Word extends React.Component {
                 })}
                 <div>
                     {this.props.isAuthenticated ? <Link to={`/fictionary/${this.state.word.id}/update`} ><button>update word</button></Link> : null}
-                    {this.props.isAuthenticated ? <button>delete word</button> : null}
+                    {this.props.isAuthenticated ? <button onClick={e => this.handleDelete(e)}>delete word</button> : null}
                 </div>
             </div>
         )

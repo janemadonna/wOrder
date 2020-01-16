@@ -33,6 +33,7 @@ class NewWord extends React.Component {
         await this.fetchDefs()
         if (this.state.definitions.length > 0) {
             await newWord(word)
+            .then(this.props.history.push('/fictionary'))
         } else {
             console.log('invalid word')
         }
