@@ -20,7 +20,7 @@ export const logInUser = async credentials => {
   }
 }
 
-export const logOut = async user => {
+export const logOut = async () => {
   try {
     await localStorage.clear();
     return true;

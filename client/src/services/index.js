@@ -20,6 +20,7 @@ export const getWords = async () => {
   export const getDefs = async (word) => {
       try {
           const resp = await api2.get(`https://wordsapiv1.p.rapidapi.com/words/${word}`)
+          console.log(resp.data.results)
           return resp.data.results
       } catch (error) {
           throw error
@@ -30,6 +31,16 @@ export const getPoems = async () => {
     try {
         const resp = await api.get('/poems')
         return resp.data
+    } catch (error) {
+        throw error
+    }
+}
+
+export const newWord = async (word) => {
+    try {
+        const resp = await api.post('/words', word)
+        console.log(resp)
+        return resp
     } catch (error) {
         throw error
     }

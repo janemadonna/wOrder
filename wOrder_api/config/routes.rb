@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :poems, only: [:index]
-  resources :words, only: [:index]
+  resources :poems
+  resources :words
   resources :users, only: [:create, :register, :login] do
     resources :poems
     resources :words

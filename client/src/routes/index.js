@@ -9,6 +9,7 @@ import LogIn from '../screens/LogIn'
 import SignUp from '../screens/SignUp'
 import NewWord from '../screens/NewWord'
 import NewPoem from '../screens/NewPoem'
+import LogOut from '../screens/LogOut'
 
 const Routes = ({user, isAuthenticated, setAuthenticated}) => {
     return (
@@ -35,13 +36,18 @@ const Routes = ({user, isAuthenticated, setAuthenticated}) => {
             />
             <Route 
             exact
+            path='/logout'
+            render={props => <LogOut {...props} setAuthenticated={setAuthenticated}/>}
+            />
+            <Route 
+            exact
             path='/signup'
             render={props => <SignUp {...props}/>}
             />
             <Route 
             exact
             path='/newword'
-            render={props => (isAuthenticated ? <NewWord isAuthenticated={isAuthenticated} {...props}/> :
+            render={props => (isAuthenticated ? <NewWord isAuthenticated={isAuthenticated} setAuthenticated={setAuthenticated} user={user} {...props}/> :
                 <Redirect to='/'/> )}
             />
             <Route 

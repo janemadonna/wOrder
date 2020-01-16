@@ -5,11 +5,12 @@ body {
 .nav {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 .nav-bar {
   color: black;
   text-decoration: none;
-  padding: 20px;
+  padding: 10px;
   font-weight: bold;
 }
 .word-title {
@@ -55,4 +56,19 @@ header {
 }
 .o {
   color: #950808;
+}
+.logo {
+  font-size: 40px;
+}
+.new-poem {
+  display: flex;
+  flex-direction: column;
+  margin: 50px 100px;
+  border: 1px solid gray;
+  padding: 20px;
+}
+.new-poem-submit {
+  width: 50px;
+  align-self: center;
+  margin-top: 20px;
 }
