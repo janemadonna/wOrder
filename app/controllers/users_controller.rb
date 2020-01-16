@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
   before_action :authenticate_token, except: [:login, :register]
-  before_action :authorize_user, except: [:login, :create, :index]
+  # before_action :authorize_user, except: [:login, :create, :index]
 
   def authorize_user                                                             
     render json: { status: 401, message: "Unauthorized" } unless get_current_user.id == params[:id].to_i                                                         
