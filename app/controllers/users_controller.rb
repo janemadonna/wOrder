@@ -56,6 +56,7 @@ class UsersController < ApplicationController
   def login
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
+      byebug
       token = create_token(@user.id, @user.username)
       render status: 200, json: { token: token, user: @user }
     else
