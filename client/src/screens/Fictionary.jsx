@@ -1,5 +1,6 @@
 import React from 'react'
 import { getWords, getDefs } from '../services'
+import { Link } from 'react-router-dom'
 
 class Fictionary extends React.Component {
     constructor() {
@@ -44,7 +45,7 @@ class Fictionary extends React.Component {
                 {words.map(word => {
                     return (
                         <div className='word-card' key={word.id}>
-                            <h4 className='word-title'>{word.title}</h4>
+                            <Link to={`/fictionary/${word.id}`} ><h4 className='word-title'>{word.title}</h4></Link>
                             <p><strong>synonym:</strong> {word.synonym}</p>
                             <div>
                                 {word.hasOwnProperty('definitions') ? word.definitions.map(definition => {

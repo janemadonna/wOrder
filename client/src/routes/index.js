@@ -10,6 +10,8 @@ import SignUp from '../screens/SignUp'
 import NewWord from '../screens/NewWord'
 import NewPoem from '../screens/NewPoem'
 import LogOut from '../screens/LogOut'
+import Word from '../screens/Word'
+import UpdateWord from '../screens/UpdateWord'
 
 const Routes = ({user, isAuthenticated, setAuthenticated}) => {
     return (
@@ -23,6 +25,16 @@ const Routes = ({user, isAuthenticated, setAuthenticated}) => {
             exact
             path='/fictionary'
             render={props => <Fictionary {...props}/>}
+            />
+            <Route 
+            exact
+            path='/fictionary/:id'
+            render={props => <Word {...props} isAuthenticated={isAuthenticated} />}
+            />
+            <Route 
+            exact
+            path='/fictionary/:id/update'
+            render={props => <UpdateWord {...props} /> }
             />
             <Route 
             exact
