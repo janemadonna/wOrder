@@ -1,5 +1,5 @@
 import React from 'react'
-import { getPoemById } from '../services'
+import { getPoemById, deletePoem } from '../services'
 import { Link } from 'react-router-dom'
 
 class Poem extends React.Component {
@@ -19,6 +19,12 @@ class Poem extends React.Component {
         this.setState({poem})
     }
 
+    handleDelete = async () => {
+        await deletePoem(this.props.match.params.id)
+        .then(this.props.history.push('/anthology'))
+        .catch(console.error)
+    }
+
     render() {
         const {poem} = this.state
         return (
@@ -27,7 +33,7 @@ class Poem extends React.Component {
                 <p>{poem.content}</p>
                 <div>
                     {this.props.isAuthenticated ? <Link to={`/anthology/${poem.id}/update`} ><button>update poem</button></Link> : null}
-                    {this.props.isAuthenticated ? <button>delete poem</button> : null}
+                    {this.props.isAuthenticated ? <button onClick={e => this.handleDelete(e)} >delete poem</button> : null}
                 </div>
             </div>
         )

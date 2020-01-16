@@ -37,7 +37,6 @@ class Word extends React.Component {
 
     handleDelete = (e) => {
         e.preventDefault()
-        console.log('delete')
         deleteWord(this.props.match.params.id)
         .then(this.props.history.push('/fictionary'))
         .catch(console.error)

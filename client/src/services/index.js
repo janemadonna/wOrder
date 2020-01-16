@@ -88,3 +88,20 @@ export const newPoem = async (poem) => {
     throw error
   }
 }
+
+export const updatePoem = async (id, poem) => {
+  try {
+    const resp = await api.put(`/poems/${id}`, poem)
+    return resp
+  } catch (error) {
+    throw error
+  }
+}
+
+export const deletePoem = async (id) => {
+  try {
+    await api.delete(`/poems/${id}`)
+  } catch (error) {
+    throw error
+  }
+}
