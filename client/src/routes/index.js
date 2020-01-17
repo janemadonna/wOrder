@@ -65,7 +65,7 @@ const Routes = ({user, isAuthenticated, setAuthenticated}) => {
             <Route 
             exact
             path='/signup'
-            render={props => <SignUp {...props}/>}
+            render={props => <SignUp {...props} setAuthenticated={setAuthenticated}/>}
             />
             <Route 
             exact

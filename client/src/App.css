@@ -72,3 +72,14 @@ header {
   align-self: center;
   margin-top: 20px;
 }
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+}
+.form-piece {
+  margin: 20px;
+}
+.sign-up {
+  margin: 20px;
+  color: #950808;
+}
